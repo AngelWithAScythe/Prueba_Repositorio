@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Listado de Directores</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+</head>
+<body>
+	<div class="card">
+		<div class="card-body">
+			<div th:switch="${directores}" class="container my-5">
+				<p class="my-5">
+					<a th:href="@{/administradores}" class="btn btn-secondary"
+						style="margin-right: 100px"> <i class="fas fa-arrow-left ml-2">
+							Regresar</i>
+					</a> <a th:href="@{/directores/new}" class="btn btn-primary"> <i
+						class="fas fa-user-plus ml-2"> Agregar Director</i>
+					</a>
+				</p>
+				<div class="col-md-10">
+					<h2 th:case="null">No se encontraron registros</h2>
+					<div th:case="*">
+						<table class="table table-striped table-resposive-md">
+							<thead>
+								<tr>
+									<th>Nombre</th>
+									<th>Cedula</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="director : ${directores}">
+									<td th:text="${director.nombre}"></td>
+									<td th:text="${director.cedula}"></td>
+									<td><a
+										th:href="@{/directores/edit/{cedula}(cedula=${director.cedula})}"
+										class="btn btn-primary"> <i class="fas fa-user-edit ml-2"></i>
+									</a></td>
+									<td><a
+										th:href="@{/directores/delete/{cedula}(cedula=${director.cedula})}"
+										class="btn btn-primary"> <i class="fas fa-user-times ml-2"></i>
+									</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

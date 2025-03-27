@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Estudiante</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+</head>
+<body>
+	<div class="card">
+		<div class="card-body">
+			<p class="my-5">
+					<a th:href="@{/}" class="btn btn-secondary"
+						style="margin-right: 100px"> <i class="fas fa-arrow-left ml-2">
+							Regresar</i>
+					</a> <a
+						th:href="@{https://www.uts.edu.co/sitio/wp-content/uploads/normatividad/acuerdos/acu-129.pdf?_t=1706217540}"
+						target="_blank" class="btn btn-primary"
+						style="margin-right: 100px"> <i class="fas ml-2"> Ver
+							calendario academico</i>
+					</a> <a
+						th:href="@{https://www.dropbox.com/sh/2937zx708zgncsw/AAA0pUsWY74w6GHJ4DksaTa1a/DOCUMENTOS%20DE%20GRADO?e=1&subfolder_nav_tracking=1&dl=0}"
+						target="_blank" class="btn btn-danger" style="margin-right: 100px">
+						<i class="fas ml-2"> Ver Formatos de grado</i>
+					</a>
+				</p>
+
+			<div class="col-md-6">
+				<div th:switch="${anteproyectos}" class="container my-5">
+					<div class="col-md-10">
+						<h2 th:case="null">No se encontraron registros</h2>
+						<div th:case="*" class="container">
+							<table class="table table-striped table-responsive-md" style="margin:0px 60%">
+								<thead>
+									<tr>
+										<th>Nombre</th>
+										<th>Enlace</th>
+										<th>Aprobación director</th>
+										<th>Aprobación evaluador</th>
+										<th>Director</th>
+										<th>Subir anteproyecto</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="anteproyecto : ${anteproyectos}">
+										<td th:text="${anteproyecto.nombre}"></td>
+										<td><a th:href="${anteproyecto.enlace}" target="_blank">Ver
+												enlace</a></td>
+										<td th:if="${anteproyecto.aprobadoD}" th:text="'Aprobado'"></td>
+										<td th:unless="${anteproyecto.aprobadoD}"
+											th:text="'No aprobado'"></td>
+										<td th:if="${anteproyecto.aprobadoE}" th:text="'Aprobado'"></td>
+										<td th:unless="${anteproyecto.aprobadoE}"
+											th:text="'No aprobado'"></td>
+										<td th:text="${anteproyecto.director.nombre}"></td>
+										<td><a style="margin-right: 10px"
+											th:href="@{/anteproyectos/subirAnteproyecto/{id}/{cedula}(id=${anteproyecto.id}, cedula=${cedula})}"
+											class="btn btn-primary"> <i class="fas fa-user-edit ml-2"></i>
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

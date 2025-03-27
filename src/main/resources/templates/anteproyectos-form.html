@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"/>
+</head>
+<body>
+<div class="container my-5">
+	<div class="card">
+		<div class="card-body">
+			<div class="col-md-10">
+				<form th:action="@{/anteproyectos/save}" th:object="${anteproyecto}" method="post">
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label for="nombre" class="col-form-label">Nombre</label>
+							<input type="text" th:field="*{nombre}" class="form-control" id="nombre" placeholder="Nombre">
+						</div>
+						<div class="form-group col-md-8">
+							<label for="director">Director:</label>
+						        <select class="form-control" id="director" name="director">
+						            <option th:each="director : ${directoresList}" 
+						                    th:value="${director.cedula}" 
+						                    th:text="${director.nombre}" 
+						                    th:selected="${director.cedula == anteproyecto.director?.cedula}"></option>
+						        </select>
+						</div>
+						<div class="col-md-6">
+							<input type="submit" class="btn btn-primary" value="Enviar">
+						</div>
+						<input type="hidden" id="id" th:field="*{id}">
+						<input type="hidden" id="estudiante" th:field="*{estudiante}">
+						<input type="hidden" id="aprobadoD" th:field="*{aprobadoD}">
+						<input type="hidden" id="aprobadoE" th:field="*{aprobadoE}">
+						<input type="hidden" id="enlace" th:field="*{enlace}">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

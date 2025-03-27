@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Inicio</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+</head>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<!-- Incluye Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		  fetch('/api/estudiantes/lista')  // Asegúrate de tener este endpoint en tu servidor
+		    .then(response => response.json())
+		    .then(data => {
+		      const select = document.getElementById('estudianteSelect');
+		      data.forEach(estudiante => {
+		        const option = document.createElement('option');
+		        option.value = estudiante.cedula;
+		        option.textContent = estudiante.nombre; // Asegúrate de que cada estudiante tiene 'id' y 'nombre'
+		        select.appendChild(option);
+		      });
+		    });
+		});
+
+		function redirigirEstudiante() {
+		  const cedula = document.getElementById('estudianteSelect').value;
+		  window.location.href = `/estudiantes/vista/${cedula}`;
+		}
+
+	</script>
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		  fetch('/api/directores/lista')  // Asegúrate de tener este endpoint en tu servidor
+		    .then(response => response.json())
+		    .then(data => {
+		      const select = document.getElementById('directorSelect');
+		      data.forEach(director => {
+		        const option = document.createElement('option');
+		        option.value = director.cedula; // Asegúrate de que cada director tiene un 'id'
+		        option.textContent = director.nombre; // Asegúrate de que cada director tiene un 'nombre'
+		        select.appendChild(option);
+		      });
+		    });
+		});
+
+		function redirigirDirector() {
+		  const cedula = document.getElementById('directorSelect').value;
+		  window.location.href = `/directores/vista/${cedula}`; // Reemplaza con la ruta correcta para redirigir a la vista del director
+		}
+
+	</script>
+	
+<body>
+	<div class="card">
+		<div class="card-body">
+			<h1 class="text-center">Elija el tipo de usuario</h1>
+			<div style="margin-top: 80px" class="text-center">
+				<a class="btn btn-primary" th:href="@{/administradores}">Administrador</a>
+				<a class="btn btn-primary" th:href="@{/evaluadores/vista}">Evaluador</a> 
+				<a class="btn btn-primary" th:href="@{/anteproyectos}">Coordinador</a>
+				<!-- Botón para abrir el modal -->
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#estudianteModal">Estudiante</button>
+
+				<!-- Modal -->
+				<div class="modal fade" id="estudianteModal" tabindex="-1"
+					role="dialog" aria-labelledby="estudianteModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="estudianteModalLabel">Seleccionar
+									Estudiante</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<select class="form-control" id="estudianteSelect">
+									<!-- Opciones de estudiantes se llenarán desde el servidor -->
+								</select>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cerrar</button>
+								<button type="button" class="btn btn-primary"
+									onclick="redirigirEstudiante()">Ir a Vista</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+					data-target="#directorModal">Director</button>
+
+				<!-- Modal -->
+				<div class="modal fade" id="directorModal" tabindex="-1"
+					role="dialog" aria-labelledby="directorModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="directorModalLabel">Seleccionar Director</h5>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<select class="form-control" id="directorSelect">
+									<!-- Opciones de estudiantes se llenarán desde el servidor -->
+								</select>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+									data-dismiss="modal">Cerrar</button>
+								<button type="button" class="btn btn-primary"
+									onclick="redirigirDirector()">Ir a Vista</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<img src="/img/Uts.png" class="img-fluid"
+					style="margin-left: 50%; margin-top: 30px">
+			</div>
+		</div>
+	</div>
+</body>
+</html>

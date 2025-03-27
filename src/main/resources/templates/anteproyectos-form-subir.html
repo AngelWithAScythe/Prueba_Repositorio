@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"/>
+</head>
+<body>
+<div class="container my-5">
+	<div class="card">
+		<div class="card-body">
+			<div class="col-md-10">
+				<form th:action="@{/anteproyectos/subir/{cedula}(cedula=${cedula})}" th:object="${anteproyecto}" method="post">
+					<div class="row">
+						<div class="form-group col-md-8">
+							<label for="enlace" class="col-form-label">Enlace</label>
+							<input type="text" th:field="*{enlace}" class="form-control" id="enlace" placeholder="Enlace del anteproyecto">
+						</div>
+						<div class="col-md-6">
+							<input type="submit" class="btn btn-primary" value="Enviar">
+						</div>
+						<input type="hidden" id="id" th:field="*{id}">
+						<input type="hidden" id="director" th:field="*{director}">
+						<input type="hidden" id="nombre" th:field="*{nombre}">
+						<input type="hidden" id="estudiante" th:field="*{estudiante}">
+						<input type="hidden" id="aprobadoD" th:field="*{aprobadoD}">
+						<input type="hidden" id="aprobadoE" th:field="*{aprobadoE}">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
