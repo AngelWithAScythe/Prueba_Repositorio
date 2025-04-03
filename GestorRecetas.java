@@ -19,9 +19,14 @@ public class GestorRecetas {
         System.out.println("Se ha eliminado la receta");
     }
 
-
-
-
+    public Receta buscarRecetaPorNombre(String nombre) {
+        for (Receta receta : recetas) {
+            if (receta.getNombre().equalsIgnoreCase(nombre)) {
+                return receta; 
+            }
+        }
+        return null; 
+    }
 
 }
 
