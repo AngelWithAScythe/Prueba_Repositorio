@@ -52,7 +52,7 @@ public class Main {
 
                 case 3:
                     System.out.print("Ingrese el nombre de la receta: ");
-                    Receta recetaEliminar = scanner.nextLine().trim();
+                    Receta recetaEliminar = gestor.buscarRecetaPorNombre(scanner.nextLine().trim());
                     gestor.eliminarReceta(recetaEliminar);
                     break;
                 case 4:
