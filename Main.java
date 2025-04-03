@@ -47,7 +47,7 @@ public class Main {
 
                     System.out.println("Receta encontrada: ");
                     System.out.println("nombre: " + recetaEncontrada.getNombre());
-                    System.out.println("instrucciones: " + recetaEncontrada.getInstrucciones);
+                    System.out.println("instrucciones: " + recetaEncontrada.getInstrucciones());
                     break;
 
                 case 3:
