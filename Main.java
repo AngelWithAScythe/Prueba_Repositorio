@@ -10,7 +10,9 @@ public class Main {
             System.out.println("   GESTOR DE RECETAS   ");
             System.out.println("=========================");
             System.out.println("1. Agregar Receta");
-            System.out.println("2. Salir");
+            System.out.println("2. Buscar Receta");
+            System.out.println("3. eliminar Receta");
+            System.out.println("4. Salir");
             System.out.print("Seleccione una opcion: ");
             
             int opcion;
@@ -39,6 +41,21 @@ public class Main {
                     break;
                 
                 case 2:
+                    System.out.print("Ingrese el nombre de la receta: ");
+                    String nombreR = scanner.nextLine().trim();
+                    Receta recetaEncontrada = gestor.buscarRecetaPorNombre(nombreR)
+
+                    System.out.println("Receta encontrada: ");
+                    System.out.println("nombre: " + recetaEncontrada.getNombre());
+                    System.out.println("instrucciones: " + recetaEncontrada.getInstrucciones);
+                    break;
+
+                case 3:
+                    System.out.print("Ingrese el nombre de la receta: ");
+                    Receta recetaEliminar = scanner.nextLine().trim();
+                    gestor.eliminarReceta(recetaEliminar);
+                    break;
+                case 4:
                     System.out.println("\nSaliendo...");
                     scanner.close();
                     return;
