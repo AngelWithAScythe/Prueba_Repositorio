@@ -43,7 +43,7 @@ public class Main {
                 case 2:
                     System.out.print("Ingrese el nombre de la receta: ");
                     String nombreR = scanner.nextLine().trim();
-                    Receta recetaEncontrada = gestor.buscarRecetaPorNombre(nombreR)
+                    Receta recetaEncontrada = gestor.buscarRecetaPorNombre(nombreR);
 
                     System.out.println("Receta encontrada: ");
                     System.out.println("nombre: " + recetaEncontrada.getNombre());
