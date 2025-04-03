@@ -11,4 +11,18 @@ public class GestorRecetas {
     public List<Receta> obtenerRecetas() {
         return recetas;
     }
+
+
+
+    public void eliminarReceta(Receta receta) {
+        recetas.remove(receta);
+        System.out.println("Se ha eliminado la receta");
+    }
+
+
+
+
+
 }
+
+
